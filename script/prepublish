@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+# normal files
+./node_modules/.bin/coffee -co dist/ source/

@@ -1,0 +1,28 @@
+{
+  "name": "nodeify",
+  "version": "0.1.0",
+  "description": "Convert a Pixie package to a node package",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STRd6/nodeify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STRd6/nodeify/issues"
+  },
+  "homepage": "https://github.com/STRd6/nodeify#readme",
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  },
+  "dependencies": {
+    "stdin": "0.0.1"
+  }
+}
