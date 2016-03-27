@@ -1,0 +1,15 @@
+# wget master.json
+
+cat /dev/stdin \
+| node dist/convert.js \
+| ./node_modules/.bin/uglifyjs \
+  --mangle \
+  --compress \
+| ./node_modules/.bin/browserify \
+  --ignore-missing \
+  - \
+| node dist/wrap.js \
+| ./node_modules/.bin/browserify \
+  --standalone Collage \
+  --basedir dist \
+  -

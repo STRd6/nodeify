@@ -18,7 +18,8 @@ convertFile = (file) ->
 convertPackage = (pkg) ->
   {dependencies, distribution} = pkg
 
-  result = extend {entryPoint: pkg.entryPoint},
+  result =
+    entryPoint: pkg.entryPoint,
     dependencies:
       Object.keys(dependencies).reduce (processed, key) ->
         processed[key] = convertPackage(dependencies[key])
@@ -32,17 +33,11 @@ convertPackage = (pkg) ->
 
 stdin (input) ->
   pkg = JSON.parse(input)
+  pkgText = Stringifier(convertPackage(pkg))
 
   # Write the `require` preamble and require then export the converted package.
   req = fs.readFileSync "#{__dirname}/require.js", 'utf8'
   process.stdout.write req
   process.stdout.write "\nmodule.exports = module.exports.loadPackage(\n"
-  process.stdout.write Stringifier(convertPackage(pkg))
+  process.stdout.write pkgText
   process.stdout.write ");"
-
-extend = (target, sources...) ->
-  for source in sources
-    for name of source
-      target[name] = source[name]
-
-  return target
