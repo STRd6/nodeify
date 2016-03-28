@@ -6,7 +6,7 @@
   "bin": "./script/bin",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "script/bin"
+    "bundle": "script/bundle"
   },
   "files": [
     "dist/",
