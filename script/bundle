@@ -1,18 +1,17 @@
+#!/bin/bash
+
 # usage: script/bundle PixelEditor < master.json > bundle.js
 # 1st arg is name, stdio to read a json package and write the bundle
 
-node dist/convert.js < /dev/stdin \
-| ./node_modules/.bin/uglifyjs \
-  --mangle \
-  --compress \
-| ./node_modules/.bin/browserify \
+script/nodeify < /dev/stdin \
+| browserify \
   --ignore-missing \
   - \
 | node dist/wrap.js \
-| ./node_modules/.bin/browserify \
+| browserify \
   --standalone "$1" \
   --basedir dist \
   - \
-| ./node_modules/.bin/uglifyjs \
+| uglifyjs \
   --mangle \
   --compress

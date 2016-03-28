@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# We expect this file to be called in node_modules/.bin and our module to be
+# named pixie2node and installed in node_modules
+
+cd $( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
+cd ../pixie2node
+script/nodeify

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+node ./dist/convert.js < /dev/stdin \
+| uglifyjs \
+  --mangle \
+  --compress
