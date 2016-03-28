@@ -1,7 +1,7 @@
-# wget master.json
+# usage: script/bundle PixelEditor < master.json > bundle.js
+# 1st arg is name, stdio to read a json package and write the bundle
 
-cat /dev/stdin \
-| node dist/convert.js \
+node dist/convert.js < /dev/stdin \
 | ./node_modules/.bin/uglifyjs \
   --mangle \
   --compress \
@@ -10,6 +10,9 @@ cat /dev/stdin \
   - \
 | node dist/wrap.js \
 | ./node_modules/.bin/browserify \
-  --standalone Collage \
+  --standalone "$1" \
   --basedir dist \
-  -
+  - \
+| ./node_modules/.bin/uglifyjs \
+  --mangle \
+  --compress

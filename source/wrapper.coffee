@@ -23,13 +23,13 @@ module.exports = (parentElement, handlers) ->
 
   parentElement.appendChild iframe
 
-  postmaster = Postmaster(null, handlers)
-  postmaster.remoteTarget = -> iframe
+  postmaster = Postmaster(handlers)
+  postmaster.remoteTarget = -> iframe.contentWindow
 
   # Return a proxy for easy Postmastering
   proxy = new Proxy postmaster,
     get: (target, property, receiver) ->
       (args...) ->
-        target.invokeRemote property, args
+        target.invokeRemote property, args...
 
   return proxy
