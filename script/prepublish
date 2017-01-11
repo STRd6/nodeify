@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
 
+npm install
+
 # normal files
 ./node_modules/.bin/coffee -co dist/ source/
