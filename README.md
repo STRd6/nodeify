@@ -17,19 +17,20 @@ that will append an editor inside the element that you pass in.
 
 Ex:
 
-    var editor = PixelEditor(document.body, {
-      childLoaded: function() {
-        console.log("Loaded")
-        editor.addAction({
-          name: "Test",
-          method: "test",
-          remote: true
-        })
-      },
-      test: function() {
-        editor.getBlob()
-        .then(function (blob) {
-          console.log(blob)
-        })
-      }
-    })
+    <html>
+    <body>
+    <script src="bundle.js"></script>
+    <script>
+      editor.addAction({
+        name: "Test",
+        method: function() {
+          editor.getBlob()
+          .then(function (blob) {
+            console.log(blob)
+          })
+        }
+      })
+    </script>
+    </body>
+    </html>
+

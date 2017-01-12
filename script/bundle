@@ -3,15 +3,8 @@
 # usage: script/bundle PixelEditor < master.json > bundle.js
 # 1st arg is name, stdio to read a json package and write the bundle
 
-script/nodeify < /dev/stdin \
-| browserify \
-  --ignore-missing \
-  - \
-| node dist/wrap.js \
+node ./dist/convert.js < /dev/stdin \
 | browserify \
   --standalone "$1" \
-  --basedir dist \
+  --ignore-missing \
   - \
-| uglifyjs \
-  --mangle \
-  --compress

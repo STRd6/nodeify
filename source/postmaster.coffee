@@ -10,6 +10,8 @@ ackTimeout = 1000
 module.exports = Postmaster = (self={}) ->
   send = (data) ->
     target = self.remoteTarget()
+    return unless target
+
     if !Worker? or target instanceof Worker
       target.postMessage data
     else

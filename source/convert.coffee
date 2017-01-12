@@ -38,6 +38,6 @@ stdin (input) ->
   # Write the `require` preamble and require then export the converted package.
   req = fs.readFileSync "#{__dirname}/require.js", 'utf8'
   process.stdout.write req
-  process.stdout.write "\nmodule.exports = module.exports.loadPackage(\n"
+  process.stdout.write "\nmodule.exports = window.wat = module.exports.loadPackage(\n"
   process.stdout.write pkgText
   process.stdout.write ");"
